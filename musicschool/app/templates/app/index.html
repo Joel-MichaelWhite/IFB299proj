@@ -1,0 +1,32 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron" style="background-image: url(https://2v0eg42uysql1jxu8v2rppov-wpengine.netdna-ssl.com/wp-content/uploads/2015/11/abstract-music-rock-bw.jpg); background-position: center bottom; background-blend-mode: overlay; background-size: cover;">
+    <h1>Pineland Music School</h1>
+    <p class="lead">Founded by Mika Williams, Pineland Music School provides quality lessons in voice, guitar, piano, cello, percussion and more.</p>
+    <p><a href="{% url 'about' %}"class="btn btn-primary btn-large"> Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Students</h2>
+        <p>
+            Students are able to book with qualified teachers online for a variety of instruments.
+            Log in to continue learning or if you're new, sign up and start your musical journey!
+        </p>
+        <p><a class="btn btn-default" href="{% url 'login' %}">Click here &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Teachers</h2>
+        <p>Wanting to join our fantastic team of teachers? Send us an application!</p>
+        <p><a class="btn btn-default" href="{% url 'teacherapplication' %}">Apply here &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Contact us</h2>
+        <p>We're always looking to improve!</p>
+        <p><a class="btn btn-default" href="{% url 'contact' %}">Let us know how &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}
