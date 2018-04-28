@@ -2,7 +2,21 @@
 #
 from django.db import models
 #
-#
+# Creating some public variables to use within different model classes
+INSTRUMENT = (
+    ('acousticguitar', 'Acoustic Guitar'),
+    ('electricguitar', 'Electric Guitar'),
+    ('bassguitar', 'Bass Guitar'),
+    ('piano', 'Piano'),
+    ('cello', 'Cello'),
+    ('drums', 'Drums'),
+    ('violin', 'Violin'),
+    ('saxophone', 'Saxophone'),
+    ('harmonium', 'Harmonium'),
+    ('tablas', 'Tablas'),
+    ('santurs', 'Santurs'),
+    ('vina', 'Vina'),
+)
 class Students(models.Model):
     FirstName = models.CharField(max_length=60)
     LastName = models.CharField(max_length=60)
@@ -16,21 +30,8 @@ class Students(models.Model):
     PhoneNumber = models.CharField(max_length=15)
     Email = models.CharField(max_length=100)
     FacebookID = models.CharField(max_length=121)
-    TEACHERINSTRUMENT = (
-        ('acousticguitar', 'Acoustic Guitar'),
-        ('electricguitar', 'Electric Guitar'),
-        ('bassguitar', 'Bass Guitar'),
-        ('piano', 'Piano'),
-        ('cello', 'Cello'),
-        ('drums', 'Drums'),
-        ('violin', 'Violin'),
-        ('saxophone', 'Saxophone'),
-        ('harmonium', 'Harmonium'),
-        ('tablas', 'Tablas'),
-        ('santurs', 'Santurs'),
-        ('vina', 'Vina'),
-    )
-    TeacherInstruments = models.CharField(max_length=20, choices=TEACHERINSTRUMENT)
+
+    TeacherInstruments = models.CharField(max_length=20, choices=INSTRUMENT)
     LESSONDAYS = (
         ('mon', 'Mon'),
         ('tues', 'Tues'),
@@ -79,23 +80,19 @@ class Teachers(models.Model):
     PhoneNumber = models.CharField(max_length=15)
     Email = models.CharField(max_length=100)
     FacebookID = models.CharField(max_length=121)
-    INSTRUMENT = (
-        ('acousticguitar', 'Acoustic Guitar'),
-        ('electricguitar', 'Electric Guitar'),
-        ('bassguitar', 'Bass Guitar'),
-        ('piano', 'Piano'),
-        ('cello', 'Cello'),
-        ('drums', 'Drums'),
-        ('violin', 'Violin'),
-        ('saxophone', 'Saxophone'),
-        ('harmonium', 'Harmonium'),
-        ('tablas', 'Tablas'),
-        ('santurs', 'Santurs'),
-        ('vina', 'Vina'),
-    )
+
     Instruments = models.CharField(max_length=20, choices=INSTRUMENT)
 
-
+class Instruments (models.Model):
+    InstrumentType=models.CharField(choices=INSTRUMENT, max_length=20)
+    HireCost=models.IntegerField
+    Instrumentcond= (
+        ('excellent', 'Excellent'),
+        ('verygood', 'VeryGood'),
+        ('mediocre', 'Mediocre'),
+        ('poor', 'Poor'),
+    )
+    InstrumentCondition=models.CharField(max_length=9, choices=Instrumentcond)
 
 
 

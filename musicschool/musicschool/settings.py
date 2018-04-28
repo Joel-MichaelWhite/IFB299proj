@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'musicschool.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ifb299',
+        'NAME': 'musicschool',
         'USER': 'root',
-        'PASSWORD': 'Secret123',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
