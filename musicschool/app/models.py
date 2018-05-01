@@ -48,7 +48,7 @@ LESSONDAYS = (
     )
 
 
-class Students(models.Model):
+class Students (models.Model):
     FirstName = models.CharField(max_length=60)
     LastName = models.CharField(max_length=60)
     DOB = models.DateField()
@@ -67,7 +67,7 @@ class Students(models.Model):
     TeacherGender = models.CharField(max_length=7, choices=SEX)
 
 
-class Admins(models.Model):
+class Admins (models.Model):
     FirstName = models.CharField(max_length=60)
     LastName = models.CharField(max_length=60)
     DOB = models.DateField()
@@ -77,7 +77,7 @@ class Admins(models.Model):
     FacebookID = models.IntegerField()
 
 
-class Teachers(models.Model):
+class Teachers (models.Model):
     FirstName = models.CharField(max_length=60)
     LastName = models.CharField(max_length=60)
     DOB = models.DateField()

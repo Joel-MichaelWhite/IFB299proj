@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^about', app.views.about, name='about'),
     url(r'^teacherapplication', app.views.teacherapplication, name='teacherapplication'),
-    url(r'^signup', app.views.signup, name='signup'),
+    url(r'^signup', app.views.UserFormView.as_view(), name='signup'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {
