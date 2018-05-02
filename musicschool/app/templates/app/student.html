@@ -2,8 +2,15 @@
 
 {% block content %}
 
-
-
+<div class="col-md-8">
+    <li>
+        <ol>{{ user }}</ol>
+        <ol>{{ user.first_name }}</ol>
+        <ol>{{ user.username }}</ol>
+        <ol>{{ user.last_name }}</ol>
+        <ol>{{ user.email }}</ol>
+    </li>
+</div>
 
 
 {% endblock %}
