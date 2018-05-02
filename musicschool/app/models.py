@@ -29,8 +29,21 @@ Languages = (
         ('russian', 'Russian'),
         ('japanese', 'Japanese'),
         ('punjabi', 'Punjabi'),
-
     )
+
+TIMES = (('7','7am'),
+         ('8','8am'),
+         ('9','9am'),
+         ('10','10am'),
+         ('11','11am'),
+         ('12','12pm'),
+         ('13','1pm'),
+         ('14','2pm'),
+         ('15','3pm'),
+         ('16','4pm'),
+         ('17','5pm'),
+         ('18','6pm'),
+         ('19','7pm'))
 
 SEX = (
     ('male', 'Male'),
@@ -51,20 +64,20 @@ LESSONDAYS = (
 class Students (models.Model):
     FirstName = models.CharField(max_length=60)
     LastName = models.CharField(max_length=60)
-    DOB = models.DateField()
-    Address = models.CharField(max_length=100)
-    sex = models.CharField(max_length=7, choices=SEX)
-    PhoneNumber = models.CharField(max_length=15)
+    DOB = models.DateField(default='2000-01-01')
+    Address = models.CharField(max_length=100,default='1 St')
+    sex = models.CharField(max_length=7, choices=SEX,default='Male')
+    PhoneNumber = models.CharField(max_length=15,default='0412312312')
     Email = models.CharField(max_length=100)
-    FacebookID = models.IntegerField()
+    FacebookID = models.IntegerField(default='1111')
 
-    TeacherInstruments = models.CharField(max_length=20, choices=INSTRUMENT)
-    LessonDays = models.CharField(max_length=5, choices=LESSONDAYS)
-    LessonTime = models.DateTimeField()
+    TeacherInstruments = models.CharField("Instrument", max_length=20, choices=INSTRUMENT)
+    LessonDays = models.CharField("Day", max_length=5, choices=LESSONDAYS)
+    LessonTime = models.CharField("Time", max_length=13, choices=TIMES)
 
-    TeacherLanguageSkills = models.CharField(max_length=10, choices=Languages)
+    TeacherLanguageSkills = models.CharField("Language", max_length=10, choices=Languages)
 
-    TeacherGender = models.CharField(max_length=7, choices=SEX)
+    TeacherGender = models.CharField("Teacher Gender", max_length=7, choices=SEX)
 
 
 class Admins (models.Model):

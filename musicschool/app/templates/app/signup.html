@@ -15,7 +15,9 @@
                 <div class="col-md-1">
 
                     {% include 'app/form_template.html' %}
+                    <form action="/studentshome">
                     <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
                     <div class="col-md-8">
                         <p><a href="{%url 'login'%}"> Click here if you're a current student.</a></p>
                     </div>

@@ -112,6 +112,20 @@ def booklesson(request):
             'year':datetime.now().year,
         }
     )
+
+def bookingconfirmation(request):
+    """Renders the booking confirmation page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/bookingconfirmation.html',
+        {
+            'title':'Booking Confirmation',
+            'message':'Here is the booking you just made.',
+            'year':datetime.now().year,
+        }
+    )
+
 def hireinstrument(request):
     """Renders the sign up page."""
     assert isinstance(request, HttpRequest)

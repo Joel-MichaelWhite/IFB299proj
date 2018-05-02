@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^about', app.views.about, name='about'),
     url(r'^teacherapplication', app.views.teacherapplication, name='teacherapplication'),
     url(r'^booklesson', app.views.bookingform.as_view(), name='booklesson'),
+    url(r'^bookingconfirmation', app.views.bookingconfirmation, name='bookingconfirmation'),
     url(r'^hireinstrument', app.views.hireinstrument, name='hireinstrument'),
     url(r'^studentshome', app.views.studentshome, name='studentshome'),
 
