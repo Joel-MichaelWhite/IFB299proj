@@ -27,6 +27,7 @@ from django.urls import path
 urlpatterns = [
     url(r'^$', app.views.home, name='home'),
     url(r'^contact$', app.views.contact, name='contact'),
+    url(r'^student$', app.views.student, name='student'),
     url(r'^about', app.views.about, name='about'),
     url(r'^teacherapplication', app.views.teacherapplication, name='teacherapplication'),
     url(r'^signup', app.views.UserFormView.as_view(), name='signup'),
