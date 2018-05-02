@@ -9,7 +9,7 @@ from django.views.generic import View
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-from .forms import UserForm
+from .forms import UserForm, studentsbookings
 
 
 def home(request):
@@ -151,6 +151,26 @@ class UserFormView(View):
                     return redirect('studentshome')
 
         return render(request, 'app/signup.html', {'form': form})
+
+class bookingform(View):
+    form_class = studentsbookings
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, 'app/booklesson.html', {'form' : form})
+
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            student = form.save(commit=False)
+            # text = form.cleaned_data('Students')
+            # form = self.form_class()
+            student.save()
+            return redirect('studentshome')
+
+            #args = {'form': form, 'text': text}
+        return render(request, 'app/booklesson.html', {'form': form})
 
 # def signupform(request):
 #     if request.method == 'POST':

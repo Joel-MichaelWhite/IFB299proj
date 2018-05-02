@@ -2,6 +2,7 @@
 Definition of forms.
 """
 from django.contrib.auth.models import User
+from .models import Students
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
@@ -23,6 +24,26 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password']
+
+class studentsbookings (forms.ModelForm):
+    Students = forms.CharField()
+
+    class Meta:
+        model = Students
+        fields = ('FirstName',
+        'LastName',
+        'DOB',
+        'Address',
+        'sex',
+        'PhoneNumber',
+        'Email',
+        'FacebookID',
+        'TeacherInstruments',
+        'LessonDays',
+        'LessonTime',
+        'TeacherLanguageSkills',
+        'TeacherGender',
+        )
 
 # class SignupForm(UserCreationForm):
 #     email = forms.EmailField(required=True)

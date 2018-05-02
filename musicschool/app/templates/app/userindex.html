@@ -1,6 +1,26 @@
-{% extends "app/layout.html" %}z
+{% extends "app/layout.html" %}
 
-{% block content %}
+{% if user.is_authenticated %}
+
+<div class="jumbotron" style="background-image: url(https://2v0eg42uysql1jxu8v2rppov-wpengine.netdna-ssl.com/wp-content/uploads/2015/11/abstract-music-rock-bw.jpg); background-position: center bottom; background-blend-mode: overlay; background-size: cover;">
+    <h1>Welcome!</h1>
+    <p class="lead">Continue with lessons, find a fantastic teacher or rent an instrument...</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <p><a class="btn btn-default" href="{% url 'booklesson' %}">Book a lesson... &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <p><a class="btn btn-default" href="{% url 'student' %}">User profile &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <p><a class="btn btn-default" href="{% url 'hireinstrument' %}">Hire instrument &raquo;</a></p>
+    </div>
+</div>
+
+
+{% else %}
 
 <div class="jumbotron" style="background-image: url(https://2v0eg42uysql1jxu8v2rppov-wpengine.netdna-ssl.com/wp-content/uploads/2015/11/abstract-music-rock-bw.jpg); background-position: center bottom; background-blend-mode: overlay; background-size: cover;">
     <h1>Pineland Music School</h1>
@@ -28,5 +48,4 @@
         <p><a class="btn btn-default" href="{% url 'contact' %}">Let us know how &raquo;</a></p>
     </div>
 </div>
-
-{% endblock %}
+{% endif %}
