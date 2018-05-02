@@ -88,6 +88,43 @@ def student(request):
         }
     )
 
+def studentshome(request):
+    """Renders the sign up page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/studentshome.html',
+        {
+            'title':'Student Home Page',
+            'message':'This is the student home page.',
+            'year':datetime.now().year,
+        }
+    )
+def booklesson(request):
+    """Renders the sign up page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/booklesson.html',
+        {
+            'title':'Book Lesson Page',
+            'message':'This is the lesson booking page page.',
+            'year':datetime.now().year,
+        }
+    )
+def hireinstrument(request):
+    """Renders the sign up page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/hireinstrument.html',
+        {
+            'title':'Instrument Hire Page',
+            'message':'This is the instrument hire page.',
+            'year':datetime.now().year,
+        }
+    )
+
 class UserFormView(View):
     form_class = UserForm
     # template_name = 'signup.html'
@@ -111,7 +148,7 @@ class UserFormView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('student')
+                    return redirect('studentshome')
 
         return render(request, 'app/signup.html', {'form': form})
 
