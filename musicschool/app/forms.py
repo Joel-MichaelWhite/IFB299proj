@@ -26,18 +26,10 @@ class UserForm(forms.ModelForm):
         fields = ['username', 'first_name', 'last_name', 'email', 'password']
 
 class studentsbookings (forms.ModelForm):
-    Students = forms.CharField()
 
     class Meta:
         model = Students
-        fields = ('FirstName',
-        'LastName',
-        'DOB',
-        'Address',
-        'sex',
-        'PhoneNumber',
-        'Email',
-        'FacebookID',
+        fields = (
         'TeacherInstruments',
         'LessonDays',
         'LessonTime',
