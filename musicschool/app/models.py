@@ -50,6 +50,17 @@ SEX = (
     ('female', 'Female'),
 )
 
+HIREDURATION = (
+    ('1', '1 week'),
+    ('2', '2 weeks'),
+    ('3', '3 weeks'),
+    ('4', '4 weeks'),
+    ('5', '5 weeks'),
+    ('6', '6 weeks'),
+    ('7', '7 weeks'),
+    ('8', '8 weeks'),
+)
+
 LESSONDAYS = (
         ('mon', 'Mon'),
         ('tues', 'Tues'),
@@ -59,7 +70,10 @@ LESSONDAYS = (
         ('sat', 'Sat'),
         ('sun', 'Sun'),
     )
-
+Booleanchoice = (
+    ('full', 'Full'),
+    ('empty', 'Empty'),
+)
 
 class Students (models.Model):
     FirstName = models.CharField(max_length=60)
@@ -103,7 +117,7 @@ class Teachers (models.Model):
 
 
 class Instruments (models.Model):
-    InstrumentType = models.CharField(choices=INSTRUMENT, max_length=20)
+    InstrumentType = models.CharField("Instrument",choices=INSTRUMENT, max_length=20)
     HireCost = models.IntegerField
     Instrumentcond = (
         ('new', 'New'),
@@ -112,7 +126,9 @@ class Instruments (models.Model):
         ('repair', 'Repair'),
         ('discard', 'Discard'),
     )
-    InstrumentCondition=models.CharField(max_length=9, choices=Instrumentcond)
+    InstrumentCondition=models.CharField("Condition",max_length=9, choices=Instrumentcond)
+    StartDate = models.DateField("Start Hire")
+    HireLength = models.CharField("Hire Length",max_length=7, choices=HIREDURATION)
 
 
 class InstrumentHire (models.Model):
@@ -125,12 +141,7 @@ class InstrumentHire (models.Model):
 class TeachingSchedule (models.Model) :
     Teacher = models.ForeignKey(Teachers, on_delete=models.CASCADE)
     TeachingDays = models.CharField(choices=LESSONDAYS, max_length=5)
-    StartTime = models.TimeField()
-    EndTime = models.TimeField()
-    Booleanchoice= (
-        ('full', 'Full'),
-        ('empty', 'Empty'),
-    )
+    StartTime = models.CharField(choices=TIMES, max_length= 13)
     ScheduleStatus = models.CharField(choices=Booleanchoice, max_length=4)
 
 
