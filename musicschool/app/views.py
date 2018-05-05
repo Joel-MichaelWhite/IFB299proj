@@ -141,7 +141,6 @@ def hireinstrument(request):
 
 class UserFormView(View):
     form_class = UserForm
-    # template_name = 'signup.html'
 
     def get(self, request):
         form = self.form_class(None)
@@ -178,12 +177,9 @@ class bookingform(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             student = form.save(commit=False)
-            # text = form.cleaned_data('Students')
-            # form = self.form_class()
             student.save()
             return redirect('studentshome')
 
-            #args = {'form': form, 'text': text}
         return render(request, 'app/booklesson.html', {'form': form})
 
 # def signupform(request):
