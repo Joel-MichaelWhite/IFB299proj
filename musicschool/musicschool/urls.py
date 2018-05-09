@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^teacherapplication', app.views.teacherapplication, name='teacherapplication'),
     url(r'^booklesson', app.views.bookingform.as_view(), name='booklesson'),
     url(r'^bookingconfirmation', app.views.bookingconfirmation, name='bookingconfirmation'),
-    url(r'^hireinstrument', app.views.hireinstrument, name='hireinstrument'),
+    url(r'^hireinstrument', app.views.instrumentform.as_view(), name='hireinstrument'),
     url(r'^studentshome', app.views.studentshome, name='studentshome'),
 
     url(r'^signup', app.views.UserFormView.as_view(), name='signup'),

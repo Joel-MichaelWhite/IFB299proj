@@ -9,7 +9,7 @@ from django.views.generic import View
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-from .forms import UserForm, studentsbookings
+from .forms import UserForm, studentsbookings, instrumentsform
 
 
 def home(request):
@@ -76,7 +76,7 @@ def signup(request):
     )
 
 def student(request):
-    """Renders the sign up page."""
+    """Renders the student details page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -89,7 +89,7 @@ def student(request):
     )
 
 def studentshome(request):
-    """Renders the sign up page."""
+    """Renders the student home page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -101,14 +101,27 @@ def studentshome(request):
         }
     )
 def booklesson(request):
-    """Renders the sign up page."""
+    """Renders the lesson booking page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/booklesson.html',
         {
             'title':'Book Lesson Page',
-            'message':'This is the lesson booking page page.',
+            'message':'This is the lesson booking page.',
+            'year':datetime.now().year,
+        }
+    )
+
+def hireinstrument(request):
+    """Renders the hire instrument page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/hireinstrument.html',
+        {
+            'title':'Hire Instrument Page',
+            'message':'This is the instrument hire page.',
             'year':datetime.now().year,
         }
     )
@@ -126,18 +139,6 @@ def bookingconfirmation(request):
         }
     )
 
-def hireinstrument(request):
-    """Renders the sign up page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/hireinstrument.html',
-        {
-            'title':'Instrument Hire Page',
-            'message':'This is the instrument hire page.',
-            'year':datetime.now().year,
-        }
-    )
 
 class UserFormView(View):
     form_class = UserForm
@@ -178,17 +179,27 @@ class bookingform(View):
         if form.is_valid():
             student = form.save(commit=False)
             student.save()
-            return redirect('studentshome')
+            return redirect('bookingconfirmation')
 
         return render(request, 'app/booklesson.html', {'form': form})
 
-# def signupform(request):
-#     if request.method == 'POST':
-#         form = SignupForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('app/index.html')
-#     else:
-#         form = SignupForm
-#         args = {'form' : form}
-#         return (request, 'app/signup.html', args)
+
+class instrumentform(View):
+    form_class = instrumentsform
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, 'app/hireinstrument.html', {'form' : form})
+
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            student = form.save(commit=False)
+            # text = form.cleaned_data('Students')
+            # form = self.form_class()
+            student.save()
+            return redirect('/studentshome')
+
+            #args = {'form': form, 'text': text}
+        return render(request, 'app/hireinstrument.html', {'form': form})
