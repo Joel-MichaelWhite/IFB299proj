@@ -118,7 +118,7 @@ class Teachers (models.Model):
 
 class Instruments (models.Model):
     InstrumentType = models.CharField("Instrument",choices=INSTRUMENT, max_length=20)
-    HireCost = models.IntegerField
+    HireCost = models.IntegerField()
     Instrumentcond = (
         ('new', 'New'),
         ('excellent', 'Excellent'),
