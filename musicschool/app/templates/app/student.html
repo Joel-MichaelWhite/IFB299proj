@@ -3,13 +3,20 @@
 {% block content %}
 
 <div class="col-md-8">
-    <li>
-        <ul>UserName: {{ user.username }}</ul>
-        <ul>First Name: {{ user.first_name }}</ul>
-        <ul>Last Name: {{ user.last_name }}</ul>
-        <ul>Email Address: {{ user.email }}</ul>
-    </li>
+
+        <p>UserName: {{ user.username }}</p>
+        <p>First Name: {{ user.first_name }}</p>
+        <p>Last Name: {{ user.last_name }}</p>
+        <p>Email Address: {{ user.email }}</p>
+        <p>Home Address: {{ user.home_address }}</p>
+        <p>Phone Number: {{ user.phone }}</p>
+        <p>DOB: {{ user.dob }}</p>
+        <p>Gender: {{ user.gender }}</p>
 </div>
 
+<div class="col-md-10">
+
+    <button type="Update" class="btn btn-success">Update</button>
+</div>
 
 {% endblock %}
