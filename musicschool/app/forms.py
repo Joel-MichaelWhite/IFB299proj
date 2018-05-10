@@ -40,6 +40,7 @@ class studentsbookings (forms.ModelForm):
         'TeacherGender',
         )
 
+#For the drop down calendar
 class DateInput(forms.DateInput):
     input_type = 'date'
 
