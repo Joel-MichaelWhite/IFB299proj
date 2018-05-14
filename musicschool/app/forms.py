@@ -50,6 +50,7 @@ class instrumentsform (forms.ModelForm):
         model = Instruments
         fields = (
         'InstrumentType',
+        'HireCost',
         'InstrumentCondition',
         'StartDate',
         'HireLength',
