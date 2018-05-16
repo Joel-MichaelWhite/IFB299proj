@@ -50,7 +50,6 @@ class instrumentsform (forms.ModelForm):
         model = Instruments
         fields = (
         'InstrumentType',
-        'HireCost',
         'InstrumentCondition',
         'StartDate',
         'HireLength',
@@ -58,3 +57,15 @@ class instrumentsform (forms.ModelForm):
         widgets = {
             'StartDate': DateInput(),
         }
+
+class updateStudentForm (forms.ModelForm):
+
+    class Meta:
+        model = Students
+        fields = (
+        'FirstName',
+        'LastName',
+        'Email',
+        'Address',
+        'PhoneNumber',
+        )

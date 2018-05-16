@@ -9,7 +9,7 @@ from django.views.generic import View
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-from .forms import UserForm, studentsbookings, instrumentsform
+from .forms import UserForm, studentsbookings, instrumentsform, updateStudentForm
 
 
 def home(request):
@@ -126,6 +126,20 @@ def hireinstrument(request):
         }
     )
 
+def updatestudent(request):
+    """Renders the update students page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/updatestudents.html',
+        {
+            'title':'Update Details Page',
+            'message':'This is the page to update details.',
+            'year':datetime.now().year,
+        }
+    )
+
+
 def bookingconfirmation(request):
     """Renders the booking confirmation page."""
     assert isinstance(request, HttpRequest)
@@ -203,3 +217,22 @@ class instrumentform(View):
 
             #args = {'form': form, 'text': text}
         return render(request, 'app/hireinstrument.html', {'form': form})
+
+class updateStudentForm(View):
+    form_class = updateStudentForm
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, 'app/updatestudent.html', {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            # text = form.cleaned_data('Students')
+            # form = self.form_class()
+            user.save()
+            return redirect('/studentshome')
+
+            # args = {'form': form, 'text': text}
+        return render(request, 'app/updatestudent.html', {'form': form})

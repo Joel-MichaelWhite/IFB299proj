@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="col-md-8">
+        <h2>Student Profile</h2>>
 
         <p>UserName: {{ user.username }}</p>
         <p>First Name: {{ user.first_name }}</p>
@@ -16,7 +17,7 @@
 
 <div class="col-md-10">
 
-    <button type="Update" class="btn btn-success">Update</button>
+    <button class="btn btn-default" href="{% url 'updatestudent' %}">Update</button>
 </div>
 
 {% endblock %}
