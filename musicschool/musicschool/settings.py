@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'app',
+    'app.NewModels',
     'app.user_accounts',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -100,10 +101,10 @@ WSGI_APPLICATION = 'musicschool.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ifb4',
-        'USER': 'root',
-        'PASSWORD': 'Secret123',
-        'HOST': '',
+        'NAME': 'MUSICSCHOOL',
+        'USER': 'JoelWhite',
+        'PASSWORD': '921792Xbox360',
+        'HOST': 'musicschool.c5y2bzyoqnsj.ap-southeast-2.rds.amazonaws.com',
         'PORT': '',
     }
 }
