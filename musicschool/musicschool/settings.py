@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'app',
+    'app.user_accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+AUTH_USER_MODEL = 'user_accounts.User'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,17 +86,27 @@ WSGI_APPLICATION = 'musicschool.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'MusicSchool',
+#         'USER': 'JoelWhite',
+#         'PASSWORD': '921792Xbox360',
+#         'HOST': 'musicschool.caarxva8wr9r.us-east-2.rds.amazonaws.com',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'MusicSchool',
-        'USER': 'JoelWhite',
-        'PASSWORD': '921792Xbox360',
-        'HOST': 'musicschool.caarxva8wr9r.us-east-2.rds.amazonaws.com',
+        'NAME': 'ifb4',
+        'USER': 'root',
+        'PASSWORD': 'Secret123',
+        'HOST': '',
         'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
