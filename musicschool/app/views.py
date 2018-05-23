@@ -9,7 +9,9 @@ from django.views.generic import View
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-from .forms import UserForm, studentsbookings, instrumentsform
+from .forms import studentsbookings, instrumentsform, Registerform, loginform
+from django.views.generic import CreateView, FormView
+
 
 
 def home(request):
@@ -138,10 +140,55 @@ def bookingconfirmation(request):
             'year':datetime.now().year,
         }
     )
+# def register_page(request):
+#     form = Registerform(request.POST or None)
+#     context = {
+#         "form": form
+#     }
+#     if form.is_valid():
+#         form.save()
+#     return render(request,"app/signup.html", context)
+class login_view(FormView):
+    form_class = loginform
+    template_name = 'app/login.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, 'app/signup.html', {'form' : form})
 
 
-class UserFormView(View):
-    form_class = UserForm
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            user = authenticate(username=email, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    if user.is_staff:
+                        return redirect('teacherapplication.html')
+                    else:
+                        return redirect('studentshome')
+
+        return render(request, 'app/signup.html', {'form': form})
+
+    # def form_valid(self, form):
+    #     request = self.request
+    #     next_ = request.GET.get('next')
+    #     next_post = request.POST.get('next')
+    #     redirect_path = next_ or next_post or None
+    #     email = form.cleaned_data.get("email")
+    #     password = form.cleaned_data.get("password")
+    #     user = authenticate(request, username=email, password=password)
+    #     if user is not None:
+    #         if user.is_active:
+    #             login(request, user)
+    #             return redirect('studentshome')
+
+class RegisterView(CreateView):
+    form_class = Registerform
 
     def get(self, request):
         form = self.form_class(None)
@@ -152,12 +199,11 @@ class UserFormView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password1']
             user.set_password(password)
             user.save()
-
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=email, password=password)
 
             if user is not None:
                 if user.is_active:
@@ -166,6 +212,34 @@ class UserFormView(View):
 
         return render(request, 'app/signup.html', {'form': form})
 
+
+
+# class UserFormView(View):
+#     form_class = UserForm
+#
+#     def get(self, request):
+#         form = self.form_class(None)
+#         return render(request, 'app/signup.html', {'form' : form})
+#
+#
+#     def post(self, request):
+#         form = self.form_class(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+#             user.set_password(password)
+#             user.save()
+#
+#             user = authenticate(username=username, password=password)
+#
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return redirect('studentshome')
+#
+#         return render(request, 'app/signup.html', {'form': form})
+#
 class bookingform(View):
     form_class = studentsbookings
 
