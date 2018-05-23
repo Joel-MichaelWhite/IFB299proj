@@ -1,0 +1,23 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="col-md-8">
+        <h2>Teacher Availability</h2>>
+
+        <p>UserName: {{ user.username }}</p>
+        <p>First Name: {{ user.first_name }}</p>
+        <p>Last Name: {{ user.last_name }}</p>
+        <p>Email Address: {{ user.email }}</p>
+        <p>Home Address: {{ user.home_address }}</p>
+        <p>Phone Number: {{ user.phone }}</p>
+        <p>DOB: {{ user.dob }}</p>
+        <p>Gender: {{ user.gender }}</p>
+</div>
+
+<div class="col-md-10">
+
+    <button class="btn btn-default" href="{% url 'updatestudent' %}">Update</button>
+</div>
+
+{% endblock %}

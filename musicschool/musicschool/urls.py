@@ -26,14 +26,17 @@ from django.urls import path
 
 urlpatterns = [
     url(r'^$', app.views.home, name='home'),
+    url(r'^home$', app.views.home, name='home'),
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^student$', app.views.student, name='student'),
     url(r'^about', app.views.about, name='about'),
     url(r'^teacherapplication', app.views.teacherapplication, name='teacherapplication'),
     url(r'^booklesson', app.views.bookingform.as_view(), name='booklesson'),
+    url(r'^updatestudent', app.views.updatestudentform.as_view(), name='updatestudent'),
     url(r'^bookingconfirmation', app.views.bookingconfirmation, name='bookingconfirmation'),
     url(r'^hireinstrument', app.views.instrumentform.as_view(), name='hireinstrument'),
     url(r'^studentshome', app.views.studentshome, name='studentshome'),
+    url(r'^teachershome', app.views.teachershome, name='teachershome'),
     #
     url(r'^signup', app.views.RegisterView.as_view(), name='signup'),
     url(r'^login', app.views.login_view.as_view(), name='login'),

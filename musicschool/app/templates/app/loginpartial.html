@@ -8,25 +8,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/studentshome" class="navbar-brand">Pineland Music School</a>
+                {% if user.is_active %}
+                    {% if user.is_staff%}
+                    <a href="/teacherapplication" class="navbar-brand">Pineland Music School</a>
+                    {% else %}
+                    <a href="/studentshome" class="navbar-brand">Pineland Music School</a>
+                    {% endif%}
+                {% else %}
+                <a href="/home" class="navbar-brand">Pineland Music School</a>
+                {% endif%}
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    {% if user.is_staff %}
-
-                        <li><a href="{% url 'teacherapplication' %}">Home</a></li>
-
-                    {% else %}
-                        <li><a href="{% url 'studentshome' %}">Home</a></li>
-
-                    {% endif %}
+                    <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
                 <form id="logoutForm" action="/logout" method="post" class="navbar-right">
                     {% csrf_token %}
                     <ul class="nav navbar-nav navbar-right">
-                        <li><span class="navbar-brand">Hello {{ user.email }}!</span></li>
+                        <li><span class="navbar-brand">Hello {{ request.user.first_name }}!</span></li>
                         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                     </ul>
                 </form>

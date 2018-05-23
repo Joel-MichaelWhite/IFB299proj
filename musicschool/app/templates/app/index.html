@@ -15,7 +15,15 @@
             Students are able to book with qualified teachers online for a variety of instruments.
             Log in to continue learning or if you're new, sign up and start your musical journey!
         </p>
+        {% if user.is_active %}
+            {% if user.is_staff%}
+            <p><a class="btn btn-default" href="{% url 'teacherapplication' %}">Click here &raquo;</a></p>
+            {% else %}
+            <p><a class="btn btn-default" href="{% url 'studentshome' %}">Click here &raquo;</a></p>
+            {% endif %}
+        {%else%}
         <p><a class="btn btn-default" href="{% url 'login' %}">Click here &raquo;</a></p>
+        {%endif %}
     </div>
     <div class="col-md-4">
         <h2>Teachers</h2>

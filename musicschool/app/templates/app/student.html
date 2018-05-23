@@ -2,22 +2,23 @@
 
 {% block content %}
 
-<div class="col-md-8">
-        <h2>Student Profile</h2>>
-
-        <p>UserName: {{ user.username }}</p>
-        <p>First Name: {{ user.first_name }}</p>
-        <p>Last Name: {{ user.last_name }}</p>
-        <p>Email Address: {{ user.email }}</p>
-        <p>Home Address: {{ user.home_address }}</p>
-        <p>Phone Number: {{ user.phone }}</p>
-        <p>DOB: {{ user.dob }}</p>
-        <p>Gender: {{ user.gender }}</p>
+<div class="row">
+        <div class="col-md-8">
+                <h2>Student Profile</h2>
+           </br>
+                <p>UserName: {{ user.username }}</p>
+                <p>First Name: {{ user.first_name }}</p>
+                <p>Last Name: {{ user.last_name }}</p>
+                <p>Email Address: {{ user.email }}</p>
+                <!--<p>Home Address: {{ user.home_address }}</p>-->
+                <!--<p>Phone Number: {{ user.phone }}</p>-->
+                <!--<p>DOB: {{ user.dob }}</p>-->
+                <!--<p>Gender: {{ user.gender }}</p>-->
+                </br>
+                <a class="btn btn-default" href="{% url 'updatestudent' %}">Update</a>
+        </div>
 </div>
 
-<div class="col-md-10">
 
-    <button class="btn btn-default" href="{% url 'updatestudent' %}">Update</button>
-</div>
 
 {% endblock %}

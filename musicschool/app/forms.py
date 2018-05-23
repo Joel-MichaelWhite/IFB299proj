@@ -131,6 +131,13 @@ class UserAdminChangeForm(forms.ModelForm):
         # field does not have access to the initial value
         return self.initial["password"]
 
+class UpdateStudentForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name',)
+
+
 class Registerform(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""

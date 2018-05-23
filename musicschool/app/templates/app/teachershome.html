@@ -1,0 +1,22 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron" style="background-image: url(https://2v0eg42uysql1jxu8v2rppov-wpengine.netdna-ssl.com/wp-content/uploads/2015/11/abstract-music-rock-bw.jpg); background-position: center bottom; background-blend-mode: overlay; background-size: cover;">
+    <h1>Welcome!</h1>
+    <p class="lead">Manage your availabilities, view you timetable and continue the great work.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <p><a class="btn btn-default" href="{% url 'teacheravailability' %}">Manage Availability... &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <p><a class="btn btn-default" href="{% url 'student' %}">User profile &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <p><a class="btn btn-default" href="{% url 'hireinstrument' %}">Hire instrument &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}

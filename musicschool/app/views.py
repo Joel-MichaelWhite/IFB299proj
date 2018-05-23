@@ -9,7 +9,7 @@ from django.views.generic import View
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-from .forms import studentsbookings, instrumentsform, Registerform, loginform
+from .forms import studentsbookings, instrumentsform, Registerform, loginform,UpdateStudentForm
 from django.views.generic import CreateView, FormView
 
 
@@ -90,6 +90,7 @@ def student(request):
         }
     )
 
+
 def studentshome(request):
     """Renders the student home page."""
     assert isinstance(request, HttpRequest)
@@ -102,6 +103,19 @@ def studentshome(request):
             'year':datetime.now().year,
         }
     )
+
+
+def teachershome(request):
+    """Renders the student home page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/teachershome.html',
+        {
+            'year':datetime.now().year,
+        }
+    )
+
 def booklesson(request):
     """Renders the lesson booking page."""
     assert isinstance(request, HttpRequest)
@@ -114,6 +128,19 @@ def booklesson(request):
             'year':datetime.now().year,
         }
     )
+def updatestudent(request):
+    """Renders the students details page for updating."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/updatestudent.html',
+        {
+            'title':'Update your Details',
+            'message':'This is where you can update your details.',
+            'year':datetime.now().year,
+        }
+    )
+
 
 def hireinstrument(request):
     """Renders the hire instrument page."""
@@ -148,13 +175,34 @@ def bookingconfirmation(request):
 #     if form.is_valid():
 #         form.save()
 #     return render(request,"app/signup.html", context)
+
+class updatestudentform(FormView):
+    form_class = UpdateStudentForm
+    def get(self, request):
+        data = {'first_name':request.user.first_name,
+                'last_name':request.user.last_name}
+        form = self.form_class(initial=data)
+        return render(request, 'app/updatestudent.html', {'form' : form})
+
+
+    def post(self, request):
+        form = self.form_class(data = request.POST,
+                               instance=request.user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            user.save()
+        return render(request, 'app/updatestudent.html', {'form': form})
+
+
 class login_view(FormView):
     form_class = loginform
     template_name = 'app/login.html'
 
     def get(self, request):
         form = self.form_class(None)
-        return render(request, 'app/signup.html', {'form' : form})
+        return render(request, 'app/login.html', {'form' : form})
 
 
     def post(self, request):
@@ -172,7 +220,7 @@ class login_view(FormView):
                     else:
                         return redirect('studentshome')
 
-        return render(request, 'app/signup.html', {'form': form})
+        return render(request, 'app/login.html', {'form': form})
 
     # def form_valid(self, form):
     #     request = self.request
@@ -211,7 +259,6 @@ class RegisterView(CreateView):
                     return redirect('studentshome')
 
         return render(request, 'app/signup.html', {'form': form})
-
 
 
 # class UserFormView(View):
@@ -260,6 +307,7 @@ class bookingform(View):
 
 class instrumentform(View):
     form_class = instrumentsform
+    InstrumentHire
 
     def get(self, request):
         form = self.form_class(None)
