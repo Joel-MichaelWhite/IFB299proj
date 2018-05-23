@@ -168,7 +168,7 @@ class login_view(FormView):
                 if user.is_active:
                     login(request, user)
                     if user.is_staff:
-                        return redirect('teacherapplication.html')
+                        return redirect('teacherapplication')
                     else:
                         return redirect('studentshome')
 
