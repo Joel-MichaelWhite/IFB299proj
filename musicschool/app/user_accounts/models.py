@@ -26,6 +26,7 @@ class UserManager(BaseUserManager):
             first_name,
             last_name,
             password=password,
+            is_student=True,
             is_staff=True
         )
         return user

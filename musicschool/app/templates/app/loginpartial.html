@@ -12,7 +12,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'studentshome' %}">Home</a></li>
+                    {% if user.is_staff %}
+
+                        <li><a href="{% url 'teacherapplication' %}">Home</a></li>
+
+                    {% else %}
+                        <li><a href="{% url 'studentshome' %}">Home</a></li>
+
+                    {% endif %}
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
@@ -20,7 +27,6 @@
                     {% csrf_token %}
                     <ul class="nav navbar-nav navbar-right">
                         <li><span class="navbar-brand">Hello {{ user.email }}!</span></li>
-                        <li><a href='studentshome'>Got to Student Page</a></li>
                         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                     </ul>
                 </form>
