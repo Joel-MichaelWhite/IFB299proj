@@ -201,7 +201,7 @@ class login_view(FormView):
 
     def get(self, request):
         form = self.form_class(None)
-        return render(request, 'app/signup.html', {'form' : form})
+        return render(request, 'app/login.html', {'form' : form})
 
 
     def post(self, request):
