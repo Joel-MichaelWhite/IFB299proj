@@ -197,11 +197,10 @@ class updatestudentform(FormView):
 
 class login_view(FormView):
     form_class = loginform
-    template_name = 'app/login.html'
 
     def get(self, request):
         form = self.form_class(None)
-        return render(request, 'app/signup.html', {'form' : form})
+        return render(request, 'app/login.html', {'form' : form})
 
 
     def post(self, request):
@@ -219,7 +218,7 @@ class login_view(FormView):
                     else:
                         return redirect('studentshome')
 
-        return render(request, 'app/signup.html', {'form': form})
+        return render(request, 'app/login.html', {'form': form})
 
     # def form_valid(self, form):
     #     request = self.request

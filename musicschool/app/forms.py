@@ -11,11 +11,11 @@ import datetime
 from django.forms import ModelForm, Form
 # from django.views.generic import CreateView, FormView
 from django.contrib.auth import get_user_model
+from .user_accounts.models import SEX
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
 User = get_user_model()
-
 
 
 # class BootstrapAuthenticationForm(AuthenticationForm):
@@ -144,12 +144,18 @@ class Registerform(forms.ModelForm):
     first_name = forms.CharField(max_length=60)
     last_name = forms.CharField(max_length=60)
 
+    DOB = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))
+    Address = forms.CharField(max_length=100)
+    sex = forms.ChoiceField(choices=SEX)
+    FacebookID = forms.IntegerField()
+
+
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ('email','first_name', 'last_name',)
+        fields = ('email','first_name', 'last_name', 'DOB', 'Address', 'sex', 'FacebookID',)
 
     def clean_password2(self):
         # Check that the two password entries match
