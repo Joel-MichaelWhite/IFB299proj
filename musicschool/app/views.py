@@ -193,7 +193,7 @@ class updatestudentform(FormView):
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             user.save()
-        return render(request, 'app/updatestudent.html', {'form': form})
+        return render(request, 'app/student.html', {'form': form})
 
 class login_view(FormView):
     form_class = loginform

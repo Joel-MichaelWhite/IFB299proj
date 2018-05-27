@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^hireinstrument', app.views.instrumentform.as_view(), name='hireinstrument'),
     url(r'^studentshome', app.views.studentshome, name='studentshome'),
     url(r'^teachershome', app.views.teachershome, name='teachershome'),
-    #
+    
     url(r'^signup', app.views.RegisterView.as_view(), name='signup'),
     url(r'^login', app.views.login_view.as_view(), name='login'),
 
