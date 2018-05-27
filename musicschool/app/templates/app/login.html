@@ -2,50 +2,32 @@
 
 {% block content %}
 
-<h2>Log in</h2>
+<h2>Login</h2>
+</br>
+<p>Log in as existing user</p>
+</br>
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-sm-9">
         <section id="loginForm">
-            <form action="." method="post" class="form-horizontal">
+            <form action="" method="post" class="form-horizontal">
                 {% csrf_token %}
-                <h4>Use an existing account to log in.</h4>
-                <hr />
-                <div class="form-group">
-                    <label for="id_username" class="col-md-2 control-label">Email</label>
-                    <div class="col-md-2">
-                        {{ form.email }}
+                <div class="col-sm-3">
+
+                    {% include 'app/form_template.html' %}
+                    <form action=".">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                    <div class="col-sm-12">
+                        </br>
+                        <p><a href="{%url 'signup'%}"> Click here if you're a new student.</a></p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="id_password" class="col-md-2 control-label">Password</label>
-                    <div class="col-md-2">
-                        {{ form.password }}
-                    </div>
-                </div>
-                <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="hidden" name="next" value="/" />
-                            <input type="submit" value="Log in" class="btn btn-default" />
-                        </div>
-                </div>
-                {% if form.errors %}
-                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
-                {% endif %}
             </form>
-            <p><a href="{%url 'signup'%}"> Click here if you're a new student.</a></p>
         </section>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-9">
         <section id="socialLoginForm"></section>
     </div>
 </div>
-
-{% endblock %}
-
-
-{% block scripts %}
-
-    {% load staticfiles %}
-<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
 
 {% endblock %}
