@@ -143,19 +143,24 @@ class Registerform(forms.ModelForm):
     fields, plus a repeated password."""
     first_name = forms.CharField(max_length=60)
     last_name = forms.CharField(max_length=60)
-
-    DOB = forms.DateField(widget=forms.widgets.DateInput(format="%m/%d/%Y"))
     Address = forms.CharField(max_length=100)
     sex = forms.ChoiceField(choices=SEX)
-    FacebookID = forms.IntegerField()
-
-
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ('email','first_name', 'last_name', 'DOB', 'Address', 'sex', 'FacebookID',)
+        fields = ('email',
+                  'first_name',
+                  'last_name',
+                  'DOB',
+                  'Address',
+                  'sex',
+                  'password1',
+                  'password2')
+        widgets = {
+            'DOB': DateInput(),
+        }
 
     def clean_password2(self):
         # Check that the two password entries match
