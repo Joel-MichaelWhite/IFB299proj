@@ -2,7 +2,7 @@
 Definition of forms.
 """
 # from django.contrib.auth.models import User
-from .models import Students, Instruments
+from .models import Students
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
@@ -11,7 +11,8 @@ import datetime
 from django.forms import ModelForm, Form
 # from django.views.generic import CreateView, FormView
 from django.contrib.auth import get_user_model
-from .user_accounts.models import SEX
+from .user_accounts.models import *
+from app.user_accounts.models import Instruments
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
@@ -78,14 +79,10 @@ class instrumentsform (forms.ModelForm):
         model = Instruments
         fields = (
         'InstrumentType',
-        'HireCost',
         'InstrumentCondition',
-        'StartDate',
-        'HireLength',
+        'HireCost',
+        'Hiredby',
         )
-        widgets = {
-            'StartDate': DateInput(),
-        }
 
 class UserAdminCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required

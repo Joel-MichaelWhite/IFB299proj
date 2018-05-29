@@ -111,7 +111,7 @@ class Instruments(models.Model):
     InstrumentType = models.CharField("Instrument", choices=INSTRUMENT, max_length=20)
     InstrumentCondition = models.CharField("Condition", max_length=9, choices=Instrumentcond)
     HireCost = models.IntegerField()
-    Hiredby=models.ForeignKey(Users, on_delete=models.CASCADE,null=True, blank=True)
+    Hiredby = models.ForeignKey(Users, on_delete=models.CASCADE,null=True, blank=True)
 
 class TeacherInstruments(models.Model):
         InstrumentType=models.CharField("InstrumentSkillLevel",choices=INSTRUMENT,max_length=20)

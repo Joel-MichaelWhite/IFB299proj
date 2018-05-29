@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
-from .forms import UserAdminCreationForm, UserAdminChangeForm
+from .forms import UserAdminCreationForm, UserAdminChangeForm, instrumentsform
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import Students, Admins, Teachers, Instruments, InstrumentHire, TeachingSchedule, Contract, TeacherFeedback
+from app.user_accounts.models import Instruments, TeacherInstruments, TeacherLanguage, Contract, TeacherAvailability
+from .models import Students # Admins, Teachers, Instruments, InstrumentHire, TeachingSchedule, Contract, TeacherFeedback
 User = get_user_model()
 
 class UserAdmin(BaseUserAdmin):
@@ -42,10 +43,8 @@ admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
 
 admin.site.register(Students)
-admin.site.register(Admins)
-admin.site.register(Teachers)
 admin.site.register(Instruments)
-admin.site.register(InstrumentHire)
-admin.site.register(TeachingSchedule)
+admin.site.register(TeacherInstruments)
+admin.site.register(TeacherLanguage)
 admin.site.register(Contract)
-admin.site.register(TeacherFeedback)
+admin.site.register(TeacherAvailability)
