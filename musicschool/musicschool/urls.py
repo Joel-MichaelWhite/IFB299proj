@@ -40,22 +40,11 @@ urlpatterns = [
     url(r'^teachershome', app.views.teachershome, name='teachershome'),
     url(r'^teacheravailability', app.views.teacheravailability, name='teacheravailability'),
     url(r'^teacher', app.views.teacher, name='teacher'),
+    url(r'^teacherbookings', app.views.teacherbookings, name='teacherbookings'),
     url(r'^updateteacher', app.views.updateteacherform.as_view(), name='updateteacher'),
     url(r'^signup', app.views.RegisterView.as_view(), name='signup'),
     url(r'^login', app.views.login_view.as_view(), name='login'),
 
-    # url(r'^login/$',
-    #     django.contrib.auth.views.login,
-    #     # {
-    #     #     'template_name': 'app/login.html',
-    #     #     'authentication_form': app.forms.BootstrapAuthenticationForm,
-    #     #     'extra_context':
-    #     #     {
-    #     #         'title': 'Log in',
-    #     #         'year': datetime.now().year,
-    #     #     }
-    #     # },
-    #     name='login'),
     url(r'^logout$',
         django.contrib.auth.views.logout,
         {

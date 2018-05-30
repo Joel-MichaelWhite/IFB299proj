@@ -186,6 +186,19 @@ def updateteacher(request):
         }
     )
 
+@staff_member_required(login_url='/login')
+def teacherbookings(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/teacherbookings.html',
+        {
+            'title':'View Bookings',
+            'message':'This is where you can view bookings.',
+            'year':datetime.now().year,
+        }
+    )
+
 @login_required(login_url='/login')
 def hireinstrument(request):
     """Renders the hire instrument page."""
@@ -232,7 +245,10 @@ class updatestudentform(FormView):
     form_class = UpdateStudentForm
     def get(self, request):
         data = {'first_name':request.user.first_name,
-                'last_name':request.user.last_name}
+                'last_name':request.user.last_name,
+                'DOB':request.user.DOB,
+                'Address':request.user.Address,
+                'sex':request.user.sex}
         form = self.form_class(initial=data)
         return render(request, 'app/updatestudent.html', {'form' : form})
 
@@ -252,7 +268,10 @@ class updateteacherform(FormView):
 
     def get(self, request):
         data = {'first_name':request.user.first_name,
-                'last_name':request.user.last_name}
+                'last_name':request.user.last_name,
+                'DOB':request.user.DOB,
+                'Address':request.user.Address,
+                'sex':request.user.sex}
         form = self.form_class(initial=data)
         return render(request, 'app/updateteacher.html', {'form' : form})
 
