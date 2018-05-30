@@ -5,11 +5,91 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 
+INSTRUMENT = (
+    ('acousticguitar', 'Acoustic Guitar'),
+    ('electricguitar', 'Electric Guitar'),
+    ('bassguitar', 'Bass Guitar'),
+    ('piano', 'Piano'),
+    ('cello', 'Cello'),
+    ('drums', 'Drums'),
+    ('violin', 'Violin'),
+    ('saxophone', 'Saxophone'),
+    ('harmonium', 'Harmonium'),
+    ('tablas', 'Tablas'),
+    ('santurs', 'Santurs'),
+    ('vina', 'Vina'),
+)
+
 SEX = (
     ('male', 'Male'),
     ('female', 'Female'),
 )
 
+Instrumentcond = (
+    ('new', 'New'),
+    ('excellent', 'Excellent'),
+    ('good', 'Good'),
+    ('repair', 'Repair'),
+    ('discard', 'Discard'),
+)
+
+SkillLevel=(
+    ('expert','Expert'),
+    ('high','High'),
+    ('medicore','Medicore'),
+)
+
+Languages = (
+        ('english', 'English'),
+        ('chinese', 'Chinese'),
+        ('spanish', 'Spanish'),
+        ('hindi', 'Hindi'),
+        ('arabic', 'Arabic'),
+        ('portuguese', 'Portuguese'),
+        ('bengali', 'Bengali'),
+        ('russian', 'Russian'),
+        ('japanese', 'Japanese'),
+        ('punjabi', 'Punjabi'),
+    )
+HIREDURATION = (
+    ('1', '1 week'),
+    ('2', '2 weeks'),
+    ('3', '3 weeks'),
+    ('4', '4 weeks'),
+    ('5', '5 weeks'),
+    ('6', '6 weeks'),
+    ('7', '7 weeks'),
+    ('8', '8 weeks'),
+)
+
+TIMES = (('7','7am'),
+         ('8','8am'),
+         ('9','9am'),
+         ('10','10am'),
+         ('11','11am'),
+         ('12','12pm'),
+         ('13','1pm'),
+         ('14','2pm'),
+         ('15','3pm'),
+         ('16','4pm'),
+         ('17','5pm'),
+         ('18','6pm'),
+         ('19','7pm'))
+
+
+LESSONDAYS = (
+        ('mon', 'Mon'),
+        ('tues', 'Tues'),
+        ('wed', 'Wed'),
+        ('thurs', 'Thurs'),
+        ('fri', 'Fri'),
+        ('sat', 'Sat'),
+        ('sun', 'Sun'),
+    )
+Booleanchoice = (
+    ('full', 'Full'),
+    ('empty', 'Empty'),
+)
 
 class UserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, DOB, Address, sex, FacebookID, password=None,  is_student=True, is_active=True, is_staff=False, is_admin=False):
@@ -74,7 +154,7 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=60, blank=True, null=True)
     last_name = models.CharField(max_length=60, blank=True, null=True)
 
-    DOB = models.DateField()
+    DOB = models.DateField(null=True)
     Address = models.CharField(max_length=100, blank=True, null=True)
     sex = models.CharField(max_length=7, choices=SEX, blank=True, null=True)
     FacebookID = models.IntegerField(null=True, blank=True)
@@ -109,3 +189,41 @@ class User(AbstractBaseUser):
     def is_admin(self):
         return self.admin
 
+class Instruments(models.Model):
+
+    InstrumentType = models.CharField("Instrument", choices=INSTRUMENT, max_length=20)
+    InstrumentCondition = models.CharField("Condition", max_length=9, choices=Instrumentcond)
+    HireCost = models.IntegerField()
+    Hiredby = models.ForeignKey(User, on_delete=models.CASCADE, null = True, default=True, choices=False)
+
+class TeacherInstruments(models.Model):
+    InstrumentType = models.CharField("InstrumentSkillLevel", choices=INSTRUMENT, max_length=20)
+    InstrumentSkillLevel = models.CharField("InstrumentSkillLevel", choices=SkillLevel, max_length=20)
+    if User.staff is True:
+        TeacherID = models.ForeignKey(User.first_name, on_delete=models.CASCADE)
+
+
+class TeacherLanguage(models.Model):
+    LanguageSkillLevel = models.CharField("LanguageSkillLevel", choices=SkillLevel, max_length=20)
+    Languages = models.CharField("Languages", choices=Languages, max_length=20)
+    if User.staff is True:
+        TeacherID = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Contract(models.Model):
+    if User.student is True:
+        StudentID = models.ForeignKey(User, on_delete=models.CASCADE, related_name="Users_Student_Contract")
+    if User.staff is True:
+        TeacherID = models.ForeignKey(User, on_delete=models.CASCADE, related_name="Users_Teacher_Contract")
+    StartDate = models.DateField()
+    EndDate = models.DateField()
+
+
+class TeacherAvailability(models.Model):
+    if User.student is True:
+        TeacherID = models.ForeignKey(User, on_delete=models.CASCADE, related_name="Users_Teacher_Availibility")
+    Days = models.CharField("Days", choices=LESSONDAYS, max_length=20)
+    Times = models.CharField("Times", choices=TIMES, max_length=15)
+    if User.staff is True:
+        StudentID = models.ForeignKey(User, on_delete=models.CASCADE, blank=True,
+                                  related_name="Users_Student_Availibility")
