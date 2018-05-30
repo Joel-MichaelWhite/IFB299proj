@@ -229,8 +229,7 @@ class TeacherAvailability(models.Model):
                                   related_name="Users_Student_Availibility")
 
 class LessonBookings(models.Model):
-    StudentID = models.ForeignKey(User, on_delete=models.CASCADE, related_name="StudentID_LessonBookings")
-    TeacherID = models.ForeignKey(User, on_delete=models.CASCADE, related_name="TeacherID_LessonBookings")
+    StudentEmail=models.CharField(max_length=100, null=True)
     # what does this doTeacherName=models.ForeignKey(User.get_full_name(),on_delete=model.CASCADE, related_name="TeacherName_LessonBookings")
     StudentFirstName = models.CharField(max_length=100, null=True)
     StudentLastName = models.CharField(max_length=100, null=True)
