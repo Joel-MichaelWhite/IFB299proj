@@ -18,41 +18,6 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 User = get_user_model()
 
-
-# class BootstrapAuthenticationForm(AuthenticationForm):
-#     """Authentication form which uses boostrap CSS."""
-#     username = forms.CharField(max_length=254,
-#                                widget=forms.TextInput({
-#                                    'class': 'form-control',
-#                                    'placeholder': 'User name'}))
-#     password = forms.CharField(label=_("Password"),
-#                                widget=forms.PasswordInput({
-#                                    'class': 'form-control',
-#                                    'placeholder':'Password'}))
-# class UserForm(forms.ModelForm):
-#     password = forms.CharField(widget=forms.PasswordInput)
-#
-#     class Meta:
-#         model = User
-#         fields = ['username', 'first_name', 'last_name', 'email', 'password']
-
-# class RegisterForm(forms.ModelForm):
-#     FirstName = forms.CharField(max_length=60, unique=True)
-#     LastName = forms.CharField(max_length=60, unique=True)
-#     DOB = forms.DateField()
-#     Address = forms.CharField(max_length=100, unique=True)
-#     sex = forms.CharField(max_length=7, choices=SEX)
-#     PhoneNumber = forms.CharField(max_length=15, unique=True)
-#     Email = forms.EmailField(max_length=100, unique=True)
-#     FacebookID = .IntegerField()
-#
-#     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-#     password2 = forms.CharField(label='Password Confirm', widget=forms.PasswordInput)
-#
-#     class Meta:
-#         model = User
-#         fields = ('')
-
 class loginform(forms.Form):
     email = forms.EmailField(label='Email')
     password = forms.CharField(widget=forms.PasswordInput)
@@ -133,6 +98,18 @@ class UpdateStudentForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name','DOB','Address','sex')
+        widgets = {
+            'DOB': DateInput(),
+        }
+
+class UpdateTeacherForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name','DOB','Address','sex')
+        widgets = {
+            'DOB': DateInput(),
+        }
 
 
 class Registerform(forms.ModelForm):

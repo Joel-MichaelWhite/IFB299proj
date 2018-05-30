@@ -34,10 +34,13 @@ urlpatterns = [
     url(r'^booklesson', app.views.bookingform.as_view(), name='booklesson'),
     url(r'^updatestudent', app.views.updatestudentform.as_view(), name='updatestudent'),
     url(r'^bookingconfirmation', app.views.bookingconfirmation, name='bookingconfirmation'),
+    url(r'^instrumentconfirmation', app.views.instrumentconfirmation, name='instrumentconfirmation'),
     url(r'^hireinstrument', app.views.instrumentform.as_view(), name='hireinstrument'),
     url(r'^studentshome', app.views.studentshome, name='studentshome'),
     url(r'^teachershome', app.views.teachershome, name='teachershome'),
-    
+    url(r'^teacheravailability', app.views.teacheravailability, name='teacheravailability'),
+    url(r'^teacher', app.views.teacher, name='teacher'),
+    url(r'^updateteacher', app.views.updateteacherform.as_view(), name='updateteacher'),
     url(r'^signup', app.views.RegisterView.as_view(), name='signup'),
     url(r'^login', app.views.login_view.as_view(), name='login'),
 

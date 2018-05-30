@@ -1,0 +1,22 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="row">
+        <div class="col-md-8">
+                <h2>Teacher Profile</h2>
+                </br>
+                <p>First Name: {{ user.first_name }}</p>
+                <p>Last Name: {{ user.last_name }}</p>
+                <p>Email Address: {{ user.email }}</p>
+                <p>Date of Birth: {{ user.DOB }}</p>
+                <p>Home Address: {{ user.Address }}</p>
+                <p>Gender: {{ user.sex }}</p>
+                </br>
+                <a class="btn btn-default" href="{% url 'updateteacher' %}">Update</a>
+        </div>
+</div>
+
+
+
+{% endblock %}

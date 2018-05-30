@@ -14,7 +14,7 @@
                 <ul class="nav navbar-nav">
                     {% if user.is_staff %}
 
-                        <li><a href="{% url 'teacherapplication' %}">Home</a></li>
+                        <li><a href="{% url 'teachershome' %}">Home</a></li>
 
                     {% else %}
                         <li><a href="{% url 'studentshome' %}">Home</a></li>
