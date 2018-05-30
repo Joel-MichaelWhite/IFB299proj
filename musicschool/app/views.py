@@ -4,6 +4,8 @@ Definition of views.
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.views import generic
 from django.views.generic import View
 from django.http import HttpRequest
@@ -77,6 +79,7 @@ def signup(request):
         }
     )
 
+@login_required(login_url='/login')
 def student(request):
     """Renders the student details page."""
     assert isinstance(request, HttpRequest)
@@ -90,6 +93,7 @@ def student(request):
         }
     )
 
+@staff_member_required(login_url='/login')
 def teacher(request):
     """Renders the teachers details page."""
     assert isinstance(request, HttpRequest)
@@ -103,6 +107,7 @@ def teacher(request):
         }
     )
 
+@login_required(login_url='/login')
 def studentshome(request):
     """Renders the student home page."""
     assert isinstance(request, HttpRequest)
@@ -116,7 +121,7 @@ def studentshome(request):
         }
     )
 
-
+@staff_member_required(login_url='/login')
 def teachershome(request):
     """Renders the student home page."""
     assert isinstance(request, HttpRequest)
@@ -128,6 +133,7 @@ def teachershome(request):
         }
     )
 
+@staff_member_required(login_url='/login')
 def teacheravailability(request):
     """Renders the student home page."""
     assert isinstance(request, HttpRequest)
@@ -139,6 +145,7 @@ def teacheravailability(request):
         }
     )
 
+@login_required(login_url='/login')
 def booklesson(request):
     """Renders the lesson booking page."""
     assert isinstance(request, HttpRequest)
@@ -151,6 +158,7 @@ def booklesson(request):
             'year':datetime.now().year,
         }
     )
+@login_required(login_url='/login')
 def updatestudent(request):
     """Renders the students details page for updating."""
     assert isinstance(request, HttpRequest)
@@ -164,6 +172,7 @@ def updatestudent(request):
         }
     )
 
+@staff_member_required(login_url='/login')
 def updateteacher(request):
     """Renders the students details page for updating."""
     assert isinstance(request, HttpRequest)
@@ -177,7 +186,7 @@ def updateteacher(request):
         }
     )
 
-
+@login_required(login_url='/login')
 def hireinstrument(request):
     """Renders the hire instrument page."""
     assert isinstance(request, HttpRequest)
@@ -191,6 +200,7 @@ def hireinstrument(request):
         }
     )
 
+@login_required(login_url='/login')
 def bookingconfirmation(request):
     """Renders the booking confirmation page."""
     assert isinstance(request, HttpRequest)
@@ -203,6 +213,7 @@ def bookingconfirmation(request):
             'year':datetime.now().year,
         }
     )
+@login_required(login_url='/login')
 def instrumentconfirmation(request):
     """Renders the instrument confirmation page."""
     assert isinstance(request, HttpRequest)
@@ -238,6 +249,7 @@ class updatestudentform(FormView):
 
 class updateteacherform(FormView):
     form_class = UpdateTeacherForm
+
     def get(self, request):
         data = {'first_name':request.user.first_name,
                 'last_name':request.user.last_name}

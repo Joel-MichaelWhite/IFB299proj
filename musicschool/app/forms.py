@@ -23,18 +23,6 @@ class loginform(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-# class studentsbookings (forms.ModelForm):
-#
-#     class Meta:
-#         model = Students
-#         fields = (
-#         'TeacherInstruments',
-#         'LessonDays',
-#         'LessonTime',
-#         'TeacherLanguageSkills',
-#         'TeacherGender',
-#         )
-
 class studentsbookings (forms.ModelForm):
 
     class Meta:
@@ -42,10 +30,6 @@ class studentsbookings (forms.ModelForm):
         fields = (
         'StudentID',
         'TeacherID',
-        'StudentFirstName',
-        'StudentLastName',
-        'TeacherFirstName',
-        'TeacherLastName',
         'TeacherInstrument',
         'TeacherLanguage',
         'LessonStartTime',
@@ -114,7 +98,6 @@ class UserAdminChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 class UpdateStudentForm(forms.ModelForm):
-
     class Meta:
         model = User
         fields = ('first_name', 'last_name','DOB','Address','sex')
@@ -123,7 +106,6 @@ class UpdateStudentForm(forms.ModelForm):
         }
 
 class UpdateTeacherForm(forms.ModelForm):
-
     class Meta:
         model = User
         fields = ('first_name', 'last_name','DOB','Address','sex')
