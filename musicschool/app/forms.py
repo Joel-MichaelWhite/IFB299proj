@@ -132,7 +132,7 @@ class UpdateStudentForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name',)
+        fields = ('first_name', 'last_name','DOB','Address','sex')
 
 
 class Registerform(forms.ModelForm):
