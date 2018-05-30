@@ -58,17 +58,37 @@ class loginform(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
+# class studentsbookings (forms.ModelForm):
+#
+#     class Meta:
+#         model = Students
+#         fields = (
+#         'TeacherInstruments',
+#         'LessonDays',
+#         'LessonTime',
+#         'TeacherLanguageSkills',
+#         'TeacherGender',
+#         )
+
 class studentsbookings (forms.ModelForm):
 
     class Meta:
-        model = Students
+        model = LessonBookings
         fields = (
-        'TeacherInstruments',
-        'LessonDays',
-        'LessonTime',
-        'TeacherLanguageSkills',
-        'TeacherGender',
+        'StudentID',
+        'TeacherID',
+        'StudentFirstName',
+        'StudentLastName',
+        'TeacherFirstName',
+        'TeacherLastName',
+        'TeacherInstrument',
+        'TeacherLanguage',
+        'LessonStartTime',
+        'LessonEndTime',
+        'LessonDay',
         )
+
+
 
 class DateInput(forms.DateInput):
     input_type = 'date'
