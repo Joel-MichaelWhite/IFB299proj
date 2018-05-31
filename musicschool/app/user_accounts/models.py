@@ -1,9 +1,12 @@
+#importing django models class as well as some functionality for the users
+
 from django.db import models
-# from NewModels.models import Users, PhoneNumbers, Instruments, TeacherInstruments, TeacherLanguage, Contract, TeacherAvailability
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
-# Create your models here.
+# Creating some CHOICE variables, which function and are used in a similar manner
+# to the ENUM datatype in other programming languages
+#
 
 INSTRUMENT = (
     ('acousticguitar', 'Acoustic Guitar'),
@@ -166,6 +169,8 @@ class User(AbstractBaseUser):
 
     objects = UserManager()
 
+# returning email field when user object is referenced
+
     def __str__(self):
         return self.email
 
@@ -188,6 +193,10 @@ class User(AbstractBaseUser):
     @property
     def is_admin(self):
         return self.admin
+#
+# All the models used in various sections of the Student, Teacher and Admin
+# pages, also used as tables in the AWS database, through running migrations.
+
 
 class Instruments(models.Model):
 
@@ -230,7 +239,6 @@ class TeacherAvailability(models.Model):
 
 class LessonBookings(models.Model):
     StudentEmail=models.CharField(max_length=100, null=True)
-    # what does this doTeacherName=models.ForeignKey(User.get_full_name(),on_delete=model.CASCADE, related_name="TeacherName_LessonBookings")
     StudentFirstName = models.CharField(max_length=100, null=True)
     StudentLastName = models.CharField(max_length=100, null=True)
     TeacherFirstName = models.CharField(max_length=100, null=True)

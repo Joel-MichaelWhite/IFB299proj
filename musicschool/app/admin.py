@@ -1,10 +1,11 @@
+# The models and forms available on the Admin part of the website
+
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from .forms import UserAdminCreationForm, UserAdminChangeForm, instrumentsform
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from app.user_accounts.models import Instruments, TeacherInstruments, TeacherLanguage, Contract, TeacherAvailability, LessonBookings
-from .models import Students # Admins, Teachers, Instruments, InstrumentHire, TeachingSchedule, Contract, TeacherFeedback
 User = get_user_model()
 
 class UserAdmin(BaseUserAdmin):
@@ -36,13 +37,7 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
-
-
-
-# Remove Group Model from admin. We're not using it.
 admin.site.unregister(Group)
-
-admin.site.register(Students)
 admin.site.register(LessonBookings)
 admin.site.register(Instruments)
 admin.site.register(TeacherInstruments)
