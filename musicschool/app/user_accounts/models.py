@@ -238,7 +238,10 @@ class TeacherAvailability(models.Model):
                                   related_name="Users_Student_Availibility")
 
 class LessonBookings(models.Model):
-    StudentEmail=models.CharField(max_length=100, null=True)
+    StudentID=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,
+                                  related_name="Lesson_bookings_StudentID")
+    TeacherID=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,
+                                  related_name="Lesson_bookings_TeacherID")
     StudentFirstName = models.CharField(max_length=100, null=True)
     StudentLastName = models.CharField(max_length=100, null=True)
     TeacherFirstName = models.CharField(max_length=100, null=True)

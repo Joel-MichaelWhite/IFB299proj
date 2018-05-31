@@ -27,12 +27,17 @@ class studentsbookings (forms.ModelForm):
     class Meta:
         model = LessonBookings
         fields = (
-        'StudentEmail',
-        'TeacherInstrument',
-        'TeacherLanguage',
-        'LessonStartTime',
-        'LessonEndTime',
-        'LessonDay',
+         'StudentID',
+         'TeacherID',
+         'StudentFirstName',
+         'StudentLastName',
+         'TeacherFirstName',
+         'TeacherLastName',
+         'TeacherInstrument',
+         'TeacherLanguage',
+         'LessonStartTime',
+         'LessonEndTime',
+         'LessonDay',
         )
 
 
