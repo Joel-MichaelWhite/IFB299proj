@@ -36,7 +36,7 @@ urlpatterns = [
     url(r'^login', app.views.login_view.as_view(), name='login'),
 
     url(r'^logout$',
-        django.contrib.auth.views.logout,
+        django.contrib.auth.views.LogoutView,
         {
             'next_page': '/',
         },

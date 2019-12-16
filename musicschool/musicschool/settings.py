@@ -17,6 +17,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 import posixpath
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'd3pydz(63-_&=4-w^qpzkuc6*o8m4j7w0(&v1ic919l3a9@+md'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,10 +88,10 @@ WSGI_APPLICATION = 'musicschool.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'MUSICSCHOOL',
-        'USER': 'JoelWhite',
-        'PASSWORD': '921792Xbox360',
-        'HOST': 'musicschool.c5y2bzyoqnsj.ap-southeast-2.rds.amazonaws.com',
+        'NAME': os.getenv("DATABASE_NAME"),
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': os.getenv("DATABASE_HOST"),
         'PORT': '',
     }
 }
